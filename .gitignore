@@ -1,0 +1,37 @@
+# Ignore SSH private keys and certs
+*.pem
+*.key
+*.crt
+*.pub
+
+# Ignore Ansible Vault password file
+vault_pass.txt
+.vault_pass.txt
+
+# Ignore backup files created by Ansible or text editors
+*.retry
+*.bak
+*.swp
+*.swo
+*~
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Python bytecode (if using Ansible with Python modules)
+__pycache__/
+*.pyc
+
+# Ignore virtual environment
+.venv/
+env/
+venv/
+
+# Ignore inventory files if sensitive (optional)
+# inventory.ini
+# hosts
+
+# Ignore custom secrets
+secrets.yml
+*.enc.yml
