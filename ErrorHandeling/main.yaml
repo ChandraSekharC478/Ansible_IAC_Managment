@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: true
+  
+  tasks:
+    - name: Make sure the packages openssh and open ssl are uptodate
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - openssh
+        - openssl
+      ignore_errors: yes
+    - name : verify the docker is exists
+      ansible.builtin.command: docker --version
+      register: output
+      ignore_errors: yes
+    - name : debugging the where failures are occouring
+      ansible.builtin.debug:
+        var: output
+    - name : installation of docker only if and only if docker is not present 
+      ansible.builtin.apt:
+        name : docker.io
+        state: present
+        update_cache: yes
+      when:
+        output.failed == true
